@@ -1,4 +1,4 @@
-data <- read.csv("exdata_data_household_power_consumption/household_power_consumption.txt",   sep = ";")
+data <- read.csv("household_power_consumption.txt",   sep = ";")
 data$Time = strptime(paste(data$Date,data$Time),format = "%d/%m/%Y %H:%M:%S")
 data$Date <- as.Date(data$Date,format = "%d/%m/%Y")
 
@@ -14,7 +14,7 @@ par(mfrow = c(2,2))
 with(data, plot(Global_active_power ~ as.POSIXct(Time), xaxt = "n", xlab = "" , ylab = "Global Active Power (kilowatt)", main="Global Active Power ", type="l"))
 axis.POSIXct(1, x=data$Time, format="%a", labels = T)
 
-plot(data$Voltage ~ as.POSIXct(data$Time), xaxt = "n", xlab = "datetime" , ylab = "Voltage", type="l"))
+plot(data$Voltage ~ as.POSIXct(data$Time), xaxt = "n", xlab = "datetime" , ylab = "Voltage", type="l")
 axis.POSIXct(1, x=data$Time, format="%a", labels = T)
 
 plot(data$Sub_metering_1 ~ as.POSIXct(data$Time), xaxt = "n", xlab = "" , ylab = "Energy sub metering",type="l", lty=1)
@@ -26,6 +26,5 @@ with(data, plot(Global_active_power ~ as.POSIXct(Time), xaxt = "n", xlab = "" , 
 axis.POSIXct(1, x=data$Time, format="%a", labels = T)
 
 
-
-
-axis.POSIXct(1, x=data$Time, format="%a", labels = T)
+dev.copy(png, file = "plot4.png")
+dev.off()
